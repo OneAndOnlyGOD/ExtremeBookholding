@@ -7,6 +7,36 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <TabControl x:Name="tabControl">
+            <TabItem Header="Eröffnungsbilanz">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="12*"/>
+                        <RowDefinition Height="118*"/>
+                    </Grid.RowDefinitions>
+                    <Separator Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+                    <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
+                        <Button>text</Button>
+                        <Button>neuer text</Button>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+                        <Button>text2</Button>
+                        <Button>neuer text2</Button>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Journal">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Hauptbuch und Schlussbilanz">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+
     </Grid>
 </Window>
