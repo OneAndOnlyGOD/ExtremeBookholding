@@ -20,9 +20,14 @@ namespace ExtremeBookHolding
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
+
+            accountbox.ItemsSource = new List<string>() { "Kasse", "Post", "Bank", "FLL", "Warenbestand",
+                "Mobilien", "Immobilien", "VLL", "Darlehensschuld", "Hypotheken", "Eigenkapital" };
+
         }
     }
 }
