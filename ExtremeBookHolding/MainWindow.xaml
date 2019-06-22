@@ -81,7 +81,65 @@
                 <Grid/>
             </TabItem>
             <TabItem Header="Hauptbuch und Schlussbilanz">
-                <Grid/>
+                <Grid>
+                    <ItemsControl ItemsSource="{Binding JournalList}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="5" Height="207" Width="244">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Separator Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
+                                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+                                    <Grid Grid.Row="1" Grid.ColumnSpan="2">
+                                        <Label Content="Aktiven"/>
+                                        <Label Content="Erföffnungsbilanz" HorizontalAlignment="Center"/>
+                                        <Label Content="Passiven" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                    <StackPanel Grid.Row="2" Orientation="Vertical">
+                                        <ItemsControl ItemsSource="{Binding SOLLAccountingRecords}" >
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid Margin="15,0">
+                                                        <TextBlock HorizontalAlignment="Left" Text="{Binding Account.Name}"/>
+                                                        <TextBlock HorizontalAlignment="Right" Text="{Binding Value}"/>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="2" VerticalAlignment="Bottom" Orientation="Vertical">
+                                        <Separator HorizontalAlignment="Right" Width="100"/>
+                                        <TextBlock Margin="15,0" TextAlignment="Right" Text="{Binding ActivAccountingRecordsSummary}"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Vertical">
+                                        <ItemsControl ItemsSource="{Binding HABENAccountingRecords}" >
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid Margin="15,0">
+                                                        <TextBlock HorizontalAlignment="Right" Text="{Binding Account.Name}"/>
+                                                        <TextBlock HorizontalAlignment="Left" Text="{Binding Value}"/>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="3" Grid.Column="1" VerticalAlignment="Bottom" Orientation="Vertical">
+                                        <Separator HorizontalAlignment="Left" Width="100"/>
+                                        <TextBlock Margin="15,0" TextAlignment="Left" Text="{Binding PassivAccountingRecordsSummary}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
             </TabItem>
         </TabControl>
 

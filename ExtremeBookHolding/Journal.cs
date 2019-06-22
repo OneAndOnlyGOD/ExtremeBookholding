@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ExtremeBookHolding
 {
-    public class AccountingRecord : INotifyPropertyChanged
+    public class Journal : INotifyPropertyChanged
     {
         private Account account;
         public Account Account
@@ -16,7 +17,7 @@ namespace ExtremeBookHolding
             get => account;
             set
             {
-                if(account != value)
+                if (account != value)
                 {
                     account = value;
                     RaisePropertyChanged();
@@ -24,29 +25,29 @@ namespace ExtremeBookHolding
             }
         }
 
-        private decimal value;
-        public decimal Value
+        private ObservableCollection<AccountingRecord> sollAccountingRecords;
+        public ObservableCollection<AccountingRecord> SOLLAccountingRecords
         {
-            get => this.value;
+            get => sollAccountingRecords;
             set
             {
-                if (this.value != value)
+                if (sollAccountingRecords != value)
                 {
-                    this.value = value;
+                    sollAccountingRecords = value;
                     RaisePropertyChanged();
                 }
             }
         }
 
-        private string text;
-        public string Text
+        private ObservableCollection<AccountingRecord> habenAccountingRecords;
+        public ObservableCollection<AccountingRecord> HABENAccountingRecords
         {
-            get => text;
+            get => habenAccountingRecords;
             set
             {
-                if (text != value)
+                if (habenAccountingRecords != value)
                 {
-                    text = value;
+                    habenAccountingRecords = value;
                     RaisePropertyChanged();
                 }
             }

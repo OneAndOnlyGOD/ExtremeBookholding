@@ -23,6 +23,11 @@ namespace ExtremeBookHolding
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        public ObservableCollection<Journal> JournalList { get; set; } = new ObservableCollection<Journal>();
+
+
+
+
         public decimal ActivAccountingRecordsSummary => ActivAccountingRecords.Sum(x => x.Value);
         public List<AccountingRecord> OrderedActivAccountingRecords => ActivAccountingRecords.OrderBy(x => x.Account.ID).ToList();
         private ObservableCollection<AccountingRecord> ActivAccountingRecords { get; set; } = new ObservableCollection<AccountingRecord>();
@@ -37,12 +42,36 @@ namespace ExtremeBookHolding
             InitializeComponent();
             DataContext = this;
             PrepareAccountList();
+            LoadJournalExampleData();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void RaisePropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public void LoadJournalExampleData()
+        {
+            foreach (Account account in accounts.ItemsSource)
+            {
+                JournalList.Add(new Journal()
+                {
+                    Account = account,
+                    HABENAccountingRecords = new ObservableCollection<AccountingRecord> {
+                    new AccountingRecord() { Account = account, Text = "Test1Haben", Value = 11},
+                    new AccountingRecord() { Account = account, Text = "Test2Haben", Value = 22},
+                    new AccountingRecord() { Account = account, Text = "Test2Haben", Value = 33},
+                },
+                    SOLLAccountingRecords = new ObservableCollection<AccountingRecord>
+                {
+                    new AccountingRecord() { Account = account, Text = "Test1Soll", Value = 101},
+                    new AccountingRecord() { Account = account, Text = "Test2Soll", Value = 202},
+                    new AccountingRecord() { Account = account, Text = "Test2Soll", Value = 303},
+                }
+                });
+            }
+
         }
 
 
